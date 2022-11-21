@@ -4,12 +4,18 @@ import Accordion from "components/Accordion";
 const Forcast = (data) => {
   const { list } = data.data.data;
   const forcasts = [...list.slice(0, 6)];
+  //this function parses the date in a way to solve the  NAN issue on safari
+  const parseISOSimple = (d) => {
+    var b = d.split(/\D/);
+    return new Date(b[0], b[1] - 1, b[2], b[3], b[4], b[5]);
+  };
   //this function returns timestamp to hour AM/PM
   const setHour = (d) => {
-    let mydate = new Date(d);
-    let hour = mydate.getHours();
+    let parsedDate = parseISOSimple(d);
+    let hour = parsedDate.getHours();
     let ampm = "";
     if (hour > 12) {
+      hour = hour - 12;
       ampm = "pm";
     } else ampm = "am";
     return (
