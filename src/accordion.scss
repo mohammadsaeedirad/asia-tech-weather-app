@@ -18,11 +18,20 @@
 }
 .accordion-wrapper + * {
   margin-top: 0.7em;
-  width: 100% !important;
 }
 .accordion-wrapper {
   margin-top: 0.7em;
-  width: 100% !important;
+}
+
+@media only screen and (min-width: 320px) {
+  .accordion-wrapper + * {
+    margin-top: 0.7em;
+    width: 100% !important;
+  }
+  .accordion-wrapper {
+    margin-top: 0.7em;
+    width: 100% !important;
+  }
 }
 .accordion-title {
   font-weight: 600;
