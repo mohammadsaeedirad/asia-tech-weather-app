@@ -44,7 +44,6 @@ export const formatToLocalTime = (d) => {
   ];
 
   let day = days[d.getDay()];
-  let date = d.getDate();
   let month = months[d.getMonth()];
   let year = d.getFullYear();
 
