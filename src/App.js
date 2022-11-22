@@ -6,36 +6,44 @@ import Forcast from "pages/Forcast";
 import Error from "components/Error";
 import Loading from "components/Loading";
 function App() {
+  var refreshInterval = 30000;
   const [city, setCity] = useState("tehran");
   const [loading, setLoading] = useState(true);
   const [weatherData, setWeatherData] = useState();
   const [forcastData, setForcastData] = useState();
   const [weatherDataError, setWeatherDataError] = useState();
   const [forcastDataError, setForcastDataError] = useState();
+  function getData() {
+    getForcastData(city)
+      .then((res) => {
+        setForcastData(res);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setForcastDataError(err.message);
+        setLoading(false);
+      });
+    getWeatherData(city)
+      .then((res) => {
+        setWeatherData(res);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setWeatherDataError(err.message);
+        setLoading(false);
+      });
+  }
   useEffect(() => {
-    function getData() {
-      getForcastData(city)
-        .then((res) => {
-          setForcastData(res);
-          setLoading(false);
-        })
-        .catch((err) => {
-          setForcastDataError(err.message);
-          setLoading(false);
-        });
-      getWeatherData(city)
-        .then((res) => {
-          setWeatherData(res);
-          setLoading(false);
-        })
-        .catch((err) => {
-          setWeatherDataError(err.message);
-          setLoading(false);
-        });
-    }
     setLoading(true);
     getData();
   }, [city]);
+  //refresh data every 5 minutes
+  useEffect(() => {
+    if (refreshInterval && refreshInterval > 0) {
+      const interval = setInterval(getData, refreshInterval);
+      return () => clearInterval(interval);
+    }
+  }, [refreshInterval]);
   if (loading) return <Loading />;
   return (
     <div className='vh-100'>
