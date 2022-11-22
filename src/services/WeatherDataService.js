@@ -42,13 +42,14 @@ export const formatToLocalTime = (d) => {
     "Friday",
     "Saturday",
   ];
-
+  let minutes = d.getMinutes();
+  let hour = d.getHours();
   let day = days[d.getDay()];
   let date = d.getDate();
   let month = months[d.getMonth()];
   let year = d.getFullYear();
 
-  return `${day} ${date} ${month} ${year}`;
+  return `${hour}:${minutes} ${day} ${date} ${month} ${year}`;
 };
 
 //this function basically just put the icon code that is returned from api into this CDN path to show the actual icon
