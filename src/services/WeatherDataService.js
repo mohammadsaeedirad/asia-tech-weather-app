@@ -79,3 +79,10 @@ export const setBackground = (bg) => {
   }
   return color;
 };
+//it is calculating the current time of your location based on timezone
+export const getDate = (dt, timezone) => {
+  const utc_seconds = parseInt(dt, 10) + parseInt(timezone, 10);
+  const utc_milliseconds = utc_seconds * 1000;
+  const local_date = new Date(utc_milliseconds).toUTCString();
+  return local_date;
+};

@@ -3,12 +3,13 @@ import {
   formatToLocalTime,
   showIcon,
   setBackground,
+  getDate,
 } from "services/WeatherDataService";
 const Weather = ({ data }) => {
   const { icon, description } = data.data.weather[0];
   const { name, dt, timezone, main, wind } = data.data;
-  //it is calculating the current time of your location based on timezone
-  const date = new Date(dt * 1000 - timezone * 1000);
+
+  const date = new Date(getDate(dt, timezone));
   return (
     <>
       <div
