@@ -42,8 +42,7 @@ export const formatToLocalTime = (d) => {
     "Friday",
     "Saturday",
   ];
-  let minutes = d.getMinutes();
-  let hour = d.getHours();
+
   let day = days[d.getDay()];
   let date = d.getDate();
   let month = months[d.getMonth()];

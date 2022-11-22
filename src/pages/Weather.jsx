@@ -6,9 +6,9 @@ import {
 } from "services/WeatherDataService";
 const Weather = ({ data }) => {
   const { icon, description } = data.data.weather[0];
-  const { name, main, wind } = data.data;
-  //the current time
-  const date = new Date();
+  const { name, dt, timezone, main, wind } = data.data;
+  //it is calculating the current time of your location based on timezone
+  const date = new Date(dt * 1000 - timezone * 1000);
   return (
     <>
       <div
