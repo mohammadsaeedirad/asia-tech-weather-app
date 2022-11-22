@@ -6,7 +6,7 @@ import Forcast from "pages/Forcast";
 import Error from "components/Error";
 import Loading from "components/Loading";
 function App() {
-  var refreshInterval = 30000;
+  var refreshInterval = 300000;
   const [city, setCity] = useState("tehran");
   const [loading, setLoading] = useState(true);
   const [weatherData, setWeatherData] = useState();
