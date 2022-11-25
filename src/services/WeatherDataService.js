@@ -1,20 +1,16 @@
-import axios from "./axiosconfig";
+import axiosconfig from "./axiosconfig";
 // commented for you so you can access my API_KEY :-)
 // const apiKey = process.env.REACT_APP_API_KEY;
 const apiKey = "86aeeea346e9b2422bc8f039b080ca36";
 //this function returns weather of current time
-export const getWeatherData = async (city) => {
+export const getWeatherData = (city) => {
   const url = `/weather?q=${city}&units=metric&appid=${apiKey}`;
-  const req = axios.get(url);
-  const res = await req;
-  return res;
+  return axiosconfig(url);
 };
 //this function returns weather of your location in a 120 hours duration we just used 15 hours of that
-export const getForcastData = async (city) => {
+export const getForcastData = (city) => {
   const url = `/forecast?q=${city}&units=metric&appid=${apiKey}`;
-  const req = axios.get(url);
-  const res = await req;
-  return res;
+  return axiosconfig(url);
 };
 
 //converting time stamp to human date
